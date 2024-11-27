@@ -19,5 +19,12 @@ export const useFavoritesStore = defineStore('favorites', {
     removeFavorite(imdbID: string) {
       this.favorites = this.favorites.filter((movie) => movie.imdbID !== imdbID)
     },
+    toggleFavorite(movie: Movie) {
+      if (this.isFavorite(movie.imdbID)) {
+        this.removeFavorite(movie.imdbID)
+      } else {
+        this.addFavorite(movie)
+      }
+    },
   },
 })
