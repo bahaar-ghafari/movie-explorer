@@ -1,30 +1,21 @@
-import type { Movie } from '@/types/movies'
 import { defineStore } from 'pinia'
+import { getFavoritesFromStorage, toggleMovieFavorite, isMovieFavorite } from './favoritesUtils'
+import type { Movie } from '@/types/movies'
 
 export const useFavoritesStore = defineStore('favorites', {
   state: () => ({
-    favorites: [] as Movie[],
+    favorites: getFavoritesFromStorage(),
   }),
   getters: {
-    isFavorite: (state) => (imdbID: string) => {
-      return state.favorites.some((movie) => movie.imdbID === imdbID)
-    },
+    isFavorite:
+      (state) =>
+      (imdbID: string): boolean => {
+        return isMovieFavorite(state.favorites, imdbID)
+      },
   },
   actions: {
-    addFavorite(movie: Movie) {
-      if (!this.isFavorite(movie.imdbID)) {
-        this.favorites.push(movie)
-      }
-    },
-    removeFavorite(imdbID: string) {
-      this.favorites = this.favorites.filter((movie) => movie.imdbID !== imdbID)
-    },
     toggleFavorite(movie: Movie) {
-      if (this.isFavorite(movie.imdbID)) {
-        this.removeFavorite(movie.imdbID)
-      } else {
-        this.addFavorite(movie)
-      }
+      this.favorites = toggleMovieFavorite(this.favorites, movie)
     },
   },
 })
