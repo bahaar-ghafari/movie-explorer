@@ -4,10 +4,11 @@ import axios, {
   type AxiosResponse,
 } from 'axios'
 
-const API_BASE_URL = 'https://www.omdbapi.com/'
+const BASE_URL = import.meta.env.VITE_BASE_URL
+const API_KEY = import.meta.env.VITE_API_KEY
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -15,10 +16,19 @@ const axiosInstance: AxiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
+    if (!config.params) {
+      config.params = {}
+    }
+    config.params.apikey = API_KEY
     return config
   },
   (error) => {
     console.error('Request error:', error)
+    let retryCount = 0
+    if (error.code === 'ECONNABORTED' && retryCount < 3) {
+      retryCount++
+      return axiosInstance.request(error.config)
+    }
     return Promise.reject(error)
   },
 )
