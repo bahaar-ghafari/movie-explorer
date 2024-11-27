@@ -1,8 +1,6 @@
 <template>
   <div class="searchbar flex justify-center items-center gap-2 w-full">
     <InputField v-model="searchQuery" placeholder="Search for movies..." type="text" />
-
-    <!-- TODO:use icon -->
     <CustomButton @click="handleSearch"> Search </CustomButton>
   </div>
 </template>
@@ -15,15 +13,13 @@ import CustomButton from '@/components/base/CustomButton.vue'
 export default defineComponent({
   name: 'SearchBar',
   components: { InputField, CustomButton },
-  setup() {
+  emits: ['search'],
+  setup(_, { emit }) {
     const searchQuery = ref('')
 
     const handleSearch = () => {
       if (searchQuery.value.trim()) {
-        console.log(`Searching for: ${searchQuery.value}`)
-      } else {
-        // TODO:toast notification
-        alert('Please enter a search query.')
+        emit('search', searchQuery.value)
       }
     }
 
