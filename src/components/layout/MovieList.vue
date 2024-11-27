@@ -39,7 +39,7 @@ export default defineComponent({
     const router = useRouter()
 
     const goToDetails = (imdbID: string) => {
-      router.push(`/movie/${imdbID}`)
+      router.push(`/movie${imdbID}`)
     }
 
     return { goToDetails }
