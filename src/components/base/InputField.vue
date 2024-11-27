@@ -5,7 +5,8 @@
     :value="modelValue"
     @input="onInput"
     :class="[
-      'block w-full px-4 py-2 text-base border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-500',
+      'block w-full px-4 py-2 text-gray-800 placeholder-gray-500 border border-gray-300 rounded-md shadow-sm',
+      'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
       customClass,
     ]"
   />
