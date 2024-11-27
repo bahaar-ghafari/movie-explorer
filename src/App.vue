@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import SearchBar from './components/layout/SearchBar.vue'
+import HomePage from './views/HomePage.vue'
 </script>
 
 <template>
-  <SearchBar />
+  <HomePage />
 </template>
-
-<style scoped></style>
