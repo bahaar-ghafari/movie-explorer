@@ -5,10 +5,11 @@
       <li
         v-for="movie in movies"
         :key="movie.imdbID"
+        @click="goToDetails(movie.imdbID)"
         class="border rounded-lg shadow-md overflow-hidden"
       >
         <img
-          :src="movie.Poster !== 'N/A' ? movie.Poster : placeholderImage"
+          :src="movie.Poster !== 'N/A' ? movie.Poster : 'placeholderImage'"
           :alt="movie.Title"
           class="w-full h-56 object-cover"
         />
@@ -23,7 +24,8 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
-import type { Movie } from '@/services/api/types/movies'
+import type { Movie } from '@/types/movies'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'MovieList',
@@ -33,11 +35,14 @@ export default defineComponent({
       required: true,
     },
   },
-  data() {
-    // TODO:add image
-    return {
-      placeholderImage: 'PLACEHOLDER_IMAGE',
+  setup() {
+    const router = useRouter()
+
+    const goToDetails = (imdbID: string) => {
+      router.push(`/movie/${imdbID}`)
     }
+
+    return { goToDetails }
   },
 })
 </script>
