@@ -13,3 +13,14 @@ export interface SearchOptions {
   type?: 'movie' | 'series' | 'episode'
   page?: number
 }
+
+export interface MovieDetails {
+  Title: string
+  Year: string
+  Genre: string
+  Plot: string
+  Director: string
+  Actors: string
+  Ratings: { Source: string; Value: string }[]
+  Poster: string
+}

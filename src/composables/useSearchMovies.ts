@@ -1,6 +1,6 @@
-import { searchMovies } from '@/services/api/movie'
-import type { SearchOptions } from '@/services/api/types/apis'
-import type { Movie } from '@/services/api/types/movies'
+import { searchMovies } from '@/services/api/search'
+import type { SearchOptions } from '@/types/apis'
+import type { Movie } from '@/types/movies'
 import { ref } from 'vue'
 
 export function useSearchMovies() {
