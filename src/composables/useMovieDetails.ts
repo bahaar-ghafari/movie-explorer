@@ -15,7 +15,8 @@ export function useMovieDetails() {
     try {
       movieDetails.value = await getMovieDetails(options)
     } catch (error) {
-      toast.error('Failed to load movie details. Please try again.')
+      const message = error instanceof Error ? error.message : 'Failed to load movie details'
+      toast.error(message)
     } finally {
       isLoading.value = false
     }
