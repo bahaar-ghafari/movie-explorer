@@ -1,8 +1,6 @@
 <template>
   <!-- TODO:add skeleton -->
   <div v-if="isLoading" class="text-blue-500">Loading movie details...</div>
-  <!-- TODO:add toast -->
-  <div v-else-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
   <div v-else-if="movieDetails" class="p-4">
     <div class="flex gap-4">
       <!-- TODO:placeholderImage -->
@@ -38,16 +36,16 @@ export default defineComponent({
   setup() {
     const route = useRoute()
 
-    const { movieDetails, isLoading, errorMessage, fetchMovieDetails } = useMovieDetails()
+    const { movieDetails, isLoading, fetchMovieDetails } = useMovieDetails()
 
     onMounted(() => {
       const imdbID = route.params.id as string
       if (imdbID) {
-        fetchMovieDetails(imdbID)
+        fetchMovieDetails({ imdbID })
       }
     })
 
-    return { movieDetails, isLoading, errorMessage }
+    return { movieDetails, isLoading }
   },
 })
 </script>

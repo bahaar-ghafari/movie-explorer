@@ -6,7 +6,7 @@
       :selectedSort="selectedSort"
       class="mb-4"
     />
-    <SearchBar @search="fetchMovies" class="mb-4" />
+    <SearchBar @search="handleSearch" class="mb-4" />
     <ProSearch v-if="showProSearch" @search="searchPro" class="mb-4" @close="toggleProSearch" />
     <MovieList
       v-if="movies.length && !isLoading"
@@ -15,9 +15,6 @@
     />
     <div v-else-if="isLoading" class="text-blue-500 text-center mt-8 font-semibold">
       Loading movies...
-    </div>
-    <div v-else-if="errorMessage" class="text-red-500 text-center mt-8 font-semibold">
-      {{ errorMessage }}
     </div>
   </div>
 </template>
@@ -37,7 +34,7 @@ export default defineComponent({
   name: 'HomePage',
   components: { AppHeader, SearchBar, MovieList, ProSearch },
   setup() {
-    const { movies, isLoading, errorMessage, fetchMovies } = useSearchMovies()
+    const { movies, isLoading, fetchMovies } = useSearchMovies()
     const { movieDetails, fetchMovieDetails } = useMovieDetails()
 
     const showProSearch = ref(false)
@@ -50,8 +47,12 @@ export default defineComponent({
     const toggleProSearch = () => {
       showProSearch.value = !showProSearch.value
     }
-
+    const handleSearch = async (query: string) => {
+      movies.value = []
+      await fetchMovies(query)
+    }
     const searchPro = (filters: FilterOptions) => {
+      movies.value = []
       fetchMovieDetails(filters)
     }
 
@@ -69,9 +70,8 @@ export default defineComponent({
     return {
       movies: sortedMovies,
       isLoading,
-      errorMessage,
       selectedSort,
-      fetchMovies,
+      handleSearch,
       toggleSelectedSort,
       toggleProSearch,
       showProSearch,
