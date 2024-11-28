@@ -1,5 +1,7 @@
 <template>
-  <MovieItem :movie="movie" v-for="movie in movies" :key="movie.imdbID" />
+  <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <MovieItem :movie="movie" v-for="movie in movies" :key="movie.imdbID" />
+  </ul>
 </template>
 
 <script lang="ts">

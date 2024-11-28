@@ -1,10 +1,6 @@
 <template>
   <li class="border rounded-lg shadow-md overflow-hidden relative bg-white">
-    <img
-      :src="movie.Poster !== 'N/A' ? movie.Poster : 'placeholderImage'"
-      :alt="movie.Title"
-      class="w-full h-56 object-cover"
-    />
+    <ImageComponent :src="movie.Poster" :alt="movie.Title" class="w-full h-56 object-cover" />
     <div class="p-2">
       <div class="grid grid-cols-[4fr_1fr]">
         <h3 class="font-semibold text-lg text-gray-600 break-words max-w-full">
@@ -28,11 +24,13 @@
 import { defineComponent, type PropType } from 'vue'
 import type { Movie } from '@/types/movies'
 import FavoriteButton from './FavoriteButton.vue'
+import ImageComponent from './ImageComponent.vue'
 
 export default defineComponent({
   name: 'MovieItem',
   components: {
     FavoriteButton,
+    ImageComponent,
   },
   props: {
     movie: {
