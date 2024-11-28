@@ -61,7 +61,7 @@ import { defineComponent, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMovieDetails } from '@/composables/useMovieDetails'
 import FavoriteButton from '@/components/layout/FavoriteButton.vue'
-import LoadingSpinner from './LoadingSpinner.vue'
+import LoadingSpinner from '../components/layout/LoadingSpinner.vue'
 
 export default defineComponent({
   name: 'MovieDetails',

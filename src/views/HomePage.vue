@@ -27,7 +27,7 @@ import { useSearchMovies } from '@/composables/useSearchMovies'
 import { sortMovies } from '@/utils/sortUtils'
 import type { FilterOptions } from '@/types/apis'
 import { useMovieDetails } from '@/composables/useMovieDetails'
-import LoadingSpinner from './LoadingSpinner.vue'
+import LoadingSpinner from '../components/layout/LoadingSpinner.vue'
 
 export default defineComponent({
   name: 'HomePage',

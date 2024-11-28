@@ -6,7 +6,7 @@
       type="text"
       @keydown.enter="handleSearch"
     />
-    <CustomButton @click="handleSearch" class="text-white"> Search </CustomButton>
+    <CustomButton @click="handleSearch" class="text-white"> <SearchIcon /> </CustomButton>
   </div>
 </template>
 
@@ -14,10 +14,11 @@
 import { defineComponent, ref } from 'vue'
 import InputField from '@/components/base/CustomInput.vue'
 import CustomButton from '@/components/base/CustomButton.vue'
+import SearchIcon from '@/assets/svg/SearchIcon.vue'
 
 export default defineComponent({
   name: 'SearchBar',
-  components: { InputField, CustomButton },
+  components: { InputField, CustomButton, SearchIcon },
   emits: ['search'],
   setup(_, { emit }) {
     const searchQuery = ref('')
