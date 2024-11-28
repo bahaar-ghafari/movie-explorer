@@ -15,7 +15,7 @@
 
       <p class="text-sm text-gray-400">{{ movie.Year }}</p>
       <router-link
-        :to="`/movie${movie.imdbID}`"
+        :to="`/movie/${movie.imdbID}`"
         class="block hover:bg-blue-100 transition text-blue-600"
       >
         See Details
@@ -26,7 +26,6 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
-import { useFavoritesStore } from '@/stores/favoritesStore'
 import type { Movie } from '@/types/movies'
 import FavoriteButton from './FavoriteButton.vue'
 

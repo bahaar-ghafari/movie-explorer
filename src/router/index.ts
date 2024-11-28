@@ -14,6 +14,10 @@ const routes = [
     name: 'FavoritesPage',
     component: () => import('@/views/FavoritesPage.vue'),
   },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
+  },
 ]
 
 const router = createRouter({

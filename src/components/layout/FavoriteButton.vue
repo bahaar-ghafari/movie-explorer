@@ -1,5 +1,5 @@
 <template>
-  <CustomButton class="bg-transparent h-fit" @click.stop="toggleFavorite(movie)">
+  <CustomButton class="bg-transparent h-fit" @click="toggleFavorite(movie)">
     <HeartIcon :filled="isFavorite(movie.imdbID)" />
   </CustomButton>
 </template>
