@@ -1,7 +1,6 @@
 import { searchMovies } from '@/services/api/search'
 import type { SearchOptions } from '@/types/api'
 import type { Movie } from '@/types/movies'
-import { errorMessages } from '@vue/compiler-sfc'
 import type { AxiosError } from 'axios'
 import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
