@@ -1,11 +1,11 @@
-import axiosInstance from '../xiosInstance'
-import type { MovieBackendSearchResponse, MoviesSearchResponse, SearchOptions } from '@/types/apis'
+import axiosInstance from '../axiosInstance'
+import type { MovieSearchResponse, MoviesSearch, SearchOptions } from '@/types/apis'
 
 export const searchMovies = async (
   query: string,
   options?: SearchOptions,
-): Promise<MoviesSearchResponse> => {
-  const response = await axiosInstance.get<MovieBackendSearchResponse>('', {
+): Promise<MoviesSearch> => {
+  const response = await axiosInstance.get<MovieSearchResponse>('', {
     params: {
       s: query,
       page: options?.page,

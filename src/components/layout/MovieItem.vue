@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <li class="border rounded-lg shadow-md overflow-hidden relative bg-white">
     <img
       :src="movie.Poster !== 'N/A' ? movie.Poster : 'placeholderImage'"
       :alt="movie.Title"
@@ -21,7 +21,7 @@
         See Details
       </router-link>
     </div>
-  </div>
+  </li>
 </template>
 
 <script lang="ts">
@@ -42,13 +42,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped>
-.movie-item {
-  transition: transform 0.3s;
-}
-
-.movie-item:hover {
-  transform: scale(1.02);
-}
-</style>

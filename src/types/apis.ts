@@ -1,21 +1,19 @@
 import type { Movie } from './movies'
 
-interface SuccessfulBackendSearchResponse {
+interface SuccessfulSearchResponse {
   Search: Movie[]
   totalResults: string // Numeric string
   Response: 'True'
 }
 
-interface FailedBackendSearchResponse {
+interface FailedSearchResponse {
   Error: 'Too many results.'
   Response: 'False'
 }
 
-export type MovieBackendSearchResponse =
-  | SuccessfulBackendSearchResponse
-  | FailedBackendSearchResponse
+export type MovieSearchResponse = SuccessfulSearchResponse | FailedSearchResponse
 
-export interface MoviesSearchResponse {
+export interface MoviesSearch {
   movies: Movie[]
   currentPage: number
   totalPages: number

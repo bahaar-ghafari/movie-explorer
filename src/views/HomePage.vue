@@ -9,11 +9,7 @@
     <SearchBar @search="handleSearch" class="mb-4" />
     <ProSearch v-if="showProSearch" @search="searchPro" class="mb-4" @close="toggleProSearch" />
     <LoadingSpinner v-if="isLoading" />
-    <MovieList
-      v-else-if="movies.length"
-      :movies="movies"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-    />
+    <MovieList :movies="movies" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" />
   </div>
 </template>
 
@@ -46,9 +42,9 @@ export default defineComponent({
     const toggleProSearch = () => {
       showProSearch.value = !showProSearch.value
     }
-    const handleSearch = async (query: string) => {
+    const handleSearch = (query: string) => {
       movies.value = []
-      await fetchMovies(query)
+      fetchMovies(query)
     }
     const searchPro = (filters: FilterOptions) => {
       movies.value = []
