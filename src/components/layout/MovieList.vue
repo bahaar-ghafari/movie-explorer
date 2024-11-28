@@ -5,17 +5,29 @@
       <li
         v-for="movie in movies"
         :key="movie.imdbID"
-        @click="goToDetails(movie.imdbID)"
-        class="border rounded-lg shadow-md overflow-hidden"
+        class="border rounded-lg shadow-md overflow-hidden relative bg-white"
       >
         <img
           :src="movie.Poster !== 'N/A' ? movie.Poster : 'placeholderImage'"
           :alt="movie.Title"
           class="w-full h-56 object-cover"
         />
-        <div class="p-2 bg-white">
-          <h3 class="font-semibold text-lg truncate text-gray-600">{{ movie.Title }}</h3>
-          <p class="text-sm text-gray-600">{{ movie.Year }}</p>
+        <div class="p-2">
+          <h3 class="font-semibold text-lg text-gray-600 break-words max-w-full">
+            {{ movie.Title }}
+          </h3>
+          <p class="text-sm text-gray-400">{{ movie.Year }}</p>
+          <div class="flex justify-between">
+            <router-link
+              :to="`/movie/${movie.imdbID}`"
+              class="block hover:bg-blue-100 transition text-blue-600"
+            >
+              See Details
+            </router-link>
+            <CustomButton class="bg-transparent h-fit" @click.stop="toggleFavorite(movie)">
+              <HeartIcon :filled="isFavorite(movie.imdbID)" />
+            </CustomButton>
+          </div>
         </div>
       </li>
     </ul>
@@ -25,10 +37,13 @@
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
 import type { Movie } from '@/types/movies'
-import { useRouter } from 'vue-router'
+import CustomButton from '../base/CustomButton.vue'
+import { useFavoritesStore } from '@/stores/favoritesStore'
+import HeartIcon from '@/assets/svg/HeartIcon.vue'
 
 export default defineComponent({
   name: 'MovieList',
+  components: { CustomButton, HeartIcon },
   props: {
     movies: {
       type: Array as PropType<Movie[]>,
@@ -36,15 +51,12 @@ export default defineComponent({
     },
   },
   setup() {
-    const router = useRouter()
+    const favoritesStore = useFavoritesStore()
 
-    const goToDetails = (imdbID: string) => {
-      router.push(`/movie${imdbID}`)
+    return {
+      toggleFavorite: favoritesStore.toggleFavorite,
+      isFavorite: favoritesStore.isFavorite,
     }
-
-    return { goToDetails }
   },
 })
 </script>
-
-<style scoped></style>
