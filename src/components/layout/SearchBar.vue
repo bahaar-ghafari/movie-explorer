@@ -1,12 +1,7 @@
 <template>
-  <div class="flex justify-center items-center w-full">
-    <InputField
-      v-model="searchQuery"
-      placeholder="Search for movies..."
-      type="text"
-      class="rounded-l-md"
-    />
-    <CustomButton @click="handleSearch" class="rounded-r-md"> Search </CustomButton>
+  <div class="flex justify-center w-full">
+    <InputField v-model="searchQuery" placeholder="Search for movies..." type="text" />
+    <CustomButton @click="handleSearch" class="text-white"> Search </CustomButton>
   </div>
 </template>
 

@@ -6,19 +6,20 @@
       class="w-full h-56 object-cover"
     />
     <div class="p-2">
-      <h3 class="font-semibold text-lg text-gray-600 break-words max-w-full">
-        {{ movie.Title }}
-      </h3>
-      <p class="text-sm text-gray-400">{{ movie.Year }}</p>
-      <div class="flex justify-between">
-        <router-link
-          :to="`/movie${movie.imdbID}`"
-          class="block hover:bg-blue-100 transition text-blue-600"
-        >
-          See Details
-        </router-link>
+      <div class="grid grid-cols-[4fr_1fr]">
+        <h3 class="font-semibold text-lg text-gray-600 break-words max-w-full">
+          {{ movie.Title }}
+        </h3>
         <FavoriteButton :movie="movie" />
       </div>
+
+      <p class="text-sm text-gray-400">{{ movie.Year }}</p>
+      <router-link
+        :to="`/movie${movie.imdbID}`"
+        class="block hover:bg-blue-100 transition text-blue-600"
+      >
+        See Details
+      </router-link>
     </div>
   </div>
 </template>

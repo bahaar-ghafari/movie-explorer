@@ -1,6 +1,6 @@
 <template>
   <div class="p-4 bg-gray-100 rounded-md shadow-md">
-    <h2 class="text-xl font-bold mb-4">Advanced Search</h2>
+    <h2 class="text-xl font-bold mb-4 text-gray-600">Advanced Search</h2>
     <form @submit.prevent="onSearch" class="grid gap-4">
       <CustomInput
         id="title"

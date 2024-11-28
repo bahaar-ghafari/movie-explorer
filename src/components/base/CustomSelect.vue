@@ -7,7 +7,7 @@
       :id="id"
       :value="modelValue"
       @change="onSelect"
-      class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+      class="mt-1 block w-full text-gray-600 border-gray-300 p-3 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
     >
       <option v-for="option in options" :key="option.value" :value="option.value">
         {{ option.label }}
