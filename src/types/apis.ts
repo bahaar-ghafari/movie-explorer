@@ -1,8 +1,22 @@
 import type { Movie } from './movies'
 
-export interface MoviesResponse {
+interface SuccessfulBackendSearchResponse {
+  Search: Movie[]
+  totalResults: string // Numeric string
+  Response: 'True'
+}
+
+interface FailedBackendSearchResponse {
+  Error: 'Too many results.'
+  Response: 'False'
+}
+
+export type MovieBackendSearchResponse =
+  | SuccessfulBackendSearchResponse
+  | FailedBackendSearchResponse
+
+export interface MoviesSearchResponse {
   movies: Movie[]
-  totalResults: number
   currentPage: number
   totalPages: number
 }
@@ -12,15 +26,4 @@ export interface SearchOptions {
   filterYear?: string
   type?: 'movie' | 'series' | 'episode'
   page?: number
-}
-
-export interface MovieDetails {
-  Title: string
-  Year: string
-  Genre: string
-  Plot: string
-  Director: string
-  Actors: string
-  Ratings: { Source: string; Value: string }[]
-  Poster: string
 }

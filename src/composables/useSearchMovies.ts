@@ -21,7 +21,7 @@ export function useSearchMovies() {
         movies.value = fetchedMovies
       }
     } catch (error) {
-      errorMessage.value = 'An error occurred while searching. Please try again.'
+      errorMessage.value = error as string
     } finally {
       isLoading.value = false
     }
