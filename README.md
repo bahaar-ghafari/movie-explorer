@@ -1,8 +1,11 @@
-# movie-explorer
+## Movie Explorer
 
 application to search, view, and manage favorite movies using the OMDb API. The app is designed with a focus on responsiveness, accessibility, and reusable components.
 
-# Table of Contents
+You can access the live version of the application here:
+[Movie Explorer](http://188.245.69.243:5173/)
+
+### Table of Contents
 
 - Installation
 - Technologies
@@ -11,7 +14,7 @@ application to search, view, and manage favorite movies using the OMDb API. The 
 - Testing
 - improvement
 
-## Project Setup
+### Project Setup
 
 1. Clone the repository:
 
@@ -46,7 +49,7 @@ npm run dev
 
 6. Open your browser and navigate to http://localhost:5173.
 
-## Technologies
+### Technologies
 
 - Vue 3: Reactive framework for building scalable front-end applications.
 - TypeScript: Ensures type safety and reduces runtime errors, ideal for handling complex data structures.
@@ -56,7 +59,7 @@ npm run dev
 - Vitest: Fast and Vite-native testing framework, optimized for Vue 3.
 - Vue Toastification: A lightweight, customizable library for user-friendly notifications.
 
-## Features
+### Features
 
 - Search Movies: Search for movies by query.
 - Advanced Search: Perform filtered searches using additional parameters.
@@ -67,7 +70,7 @@ npm run dev
 - Accessibility: Components are accessible and keyboard-friendly.
 - Error Handling: Graceful error messages with toast notifications.
 
-## Best Practices
+### Best Practices
 
 1. Reusable Components: Modular and maintainable UI building blocks.
 2. Composables: Centralized, reusable hooks for cleaner logic separation.
@@ -76,7 +79,7 @@ npm run dev
 5. Interceptors: Handles API headers, retries, and error responses centrally.
 6. Lazy Loading: Improves performance by loading components only when needed.
 
-## Testing
+### Testing
 
 This project uses Vitest for unit testing. Run tests with:
 
@@ -84,7 +87,7 @@ This project uses Vitest for unit testing. Run tests with:
 npm run test
 ```
 
-## Improvements
+### Improvements
 
 - Enhance Test Coverage: Write unit tests for all components, composables, and utility functions to ensure reliability and maintainability.
 - Add Pagination: Improve user experience by implementing pagination for search results and favorite movies.
