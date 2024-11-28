@@ -37,15 +37,12 @@ export default defineComponent({
   name: 'HomePage',
   components: { AppHeader, SearchBar, MovieList, ProSearch },
   setup() {
-    // Composables
     const { movies, isLoading, errorMessage, fetchMovies } = useSearchMovies()
     const { movieDetails, fetchMovieDetails } = useMovieDetails()
 
-    // Reactive States
     const showProSearch = ref(false)
     const selectedSort = ref<'title' | 'year'>('title')
 
-    // Methods
     const toggleSelectedSort = () => {
       selectedSort.value = selectedSort.value === 'title' ? 'year' : 'title'
     }
@@ -58,17 +55,15 @@ export default defineComponent({
       fetchMovieDetails(filters)
     }
 
-    // Watchers
     watch(
       () => movieDetails.value,
       (newDetails) => {
         if (newDetails) {
-          movies.value = [newDetails] // Replace movies with the new movie details
+          movies.value = [newDetails]
         }
       },
     )
 
-    // Computed Properties
     const sortedMovies = computed(() => sortMovies(movies.value, selectedSort.value))
 
     return {
