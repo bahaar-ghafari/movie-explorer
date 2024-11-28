@@ -7,7 +7,7 @@
       class="mb-4"
     />
     <SearchBar @search="fetchMovies" class="mb-4" />
-    <ProSearch v-if="showProSearch" @search="searchPro" class="mb-4" />
+    <ProSearch v-if="showProSearch" @search="searchPro" class="mb-4" @close="toggleProSearch" />
     <MovieList
       v-if="movies.length && !isLoading"
       :movies="movies"

@@ -1,5 +1,12 @@
 <template>
-  <div class="p-4 bg-gray-100 rounded-md shadow-md">
+  <div class="p-4 bg-gray-100 rounded-md shadow-md relative">
+    <CustomButton
+      @click="onClose"
+      class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 transition"
+      aria-label="Close"
+    >
+      ✕
+    </CustomButton>
     <h2 class="text-xl font-bold mb-4 text-gray-600">Advanced Search</h2>
     <form @submit.prevent="onSearch" class="grid gap-4">
       <CustomInput
@@ -41,7 +48,7 @@ import CustomButton from '@/components/base/CustomButton.vue'
 export default defineComponent({
   name: 'ProSearch',
   components: { CustomInput, CustomSelect, CustomButton },
-  emits: ['search', 'reset'],
+  emits: ['search', 'reset', 'close'],
   setup(_, { emit }) {
     const filters = ref({
       title: '',
@@ -68,12 +75,27 @@ export default defineComponent({
       }
     }
 
+    const onClose = () => {
+      emit('close')
+    }
+
     return {
       filters,
       typeOptions,
       onSearch,
       onReset,
+      onClose,
     }
   },
 })
 </script>
+
+<style scoped>
+button[aria-label='Close'] {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+</style>
