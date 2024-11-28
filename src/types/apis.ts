@@ -1,26 +1,40 @@
 import type { Movie } from './movies'
 
-export interface MoviesResponse {
+interface SuccessfulSearchResponse {
+  Search: Movie[]
+  totalResults: string // Numeric string
+  Response: 'True'
+}
+
+interface FailedSearchResponse {
+  Error: 'Too many results.'
+  Response: 'False'
+}
+
+export type MovieSearchResponse = SuccessfulSearchResponse | FailedSearchResponse
+
+export interface MoviesSearch {
   movies: Movie[]
-  totalResults: number
   currentPage: number
   totalPages: number
 }
+export type MediaType = 'movie' | 'series' | 'episode'
 
 export interface SearchOptions {
-  sortBy?: 'title' | 'year'
-  filterYear?: string
-  type?: 'movie' | 'series' | 'episode'
+  year?: string
+  type?: MediaType
   page?: number
 }
-
-export interface MovieDetails {
-  Title: string
-  Year: string
-  Genre: string
-  Plot: string
-  Director: string
-  Actors: string
-  Ratings: { Source: string; Value: string }[]
-  Poster: string
-}
+export type FilterOptions =
+  | {
+      imdbID: string
+      title?: never
+      year?: string
+      type?: MediaType
+    }
+  | {
+      imdbID?: never
+      title: string
+      year?: string
+      type?: MediaType
+    }

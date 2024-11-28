@@ -1,31 +1,32 @@
 import { searchMovies } from '@/services/api/search'
 import type { SearchOptions } from '@/types/apis'
 import type { Movie } from '@/types/movies'
+import { errorMessages } from '@vue/compiler-sfc'
+import type { AxiosError } from 'axios'
 import { ref } from 'vue'
+import { useToast } from 'vue-toastification'
 
 export function useSearchMovies() {
   const movies = ref<Movie[]>([])
-  const errorMessage = ref('')
   const isLoading = ref(false)
+  const toast = useToast()
 
   const fetchMovies = async (query: string, options: SearchOptions = {}) => {
     try {
-      errorMessage.value = ''
       isLoading.value = true
-
       const { movies: fetchedMovies } = await searchMovies(query, options)
 
       if (fetchedMovies.length === 0) {
-        errorMessage.value = 'No movies found.'
+        toast.error('No movies found.')
       } else {
         movies.value = fetchedMovies
       }
-    } catch (error) {
-      errorMessage.value = 'An error occurred while searching. Please try again.'
+    } catch (error: unknown) {
+      toast.error((error as AxiosError).message)
     } finally {
       isLoading.value = false
     }
   }
 
-  return { movies, errorMessage, isLoading, fetchMovies }
+  return { movies, isLoading, fetchMovies }
 }
