@@ -1,9 +1,22 @@
 <template>
   <header
-    class="flex items-center justify-between rounded-t-md p-4 bg-gray-800 text-white shadow-md"
+    class="flex items-center justify-between flex-wrap rounded-t-md p-4 bg-gray-800 text-white shadow-md"
   >
     <h1 class="text-lg font-bold">Movie Explorer</h1>
-    <nav class="flex items-center gap-4">
+
+    <CustomButton
+      @click="toggleMenu"
+      class="block md:hidden bg-white text-blue-900 hover:bg-sky-200 px-4 rounded-md"
+    >
+      Menu
+    </CustomButton>
+    <nav
+      :class="[
+        'flex-col md:flex-row items-center gap-4 mt-4 md:mt-0',
+        isMenuOpen ? 'flex' : 'hidden md:flex',
+      ]"
+      class="w-full md:w-auto"
+    >
       <CustomButton
         @click="sortMovies"
         customClass="bg-white text-blue-900 hover:bg-sky-200 px-4 rounded-md"
@@ -30,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { ref, computed, defineComponent } from 'vue'
 import { useFavoritesStore } from '@/stores/favoritesStore'
 import CustomButton from '@/components/base/CustomButton.vue'
 import HeartIcon from '@/assets/svg/HeartIcon.vue'
@@ -48,6 +61,11 @@ export default defineComponent({
   setup(_, { emit }) {
     const favoritesStore = useFavoritesStore()
     const favoriteCount = computed(() => favoritesStore.favorites.length)
+    const isMenuOpen = ref(false)
+
+    const toggleMenu = () => {
+      isMenuOpen.value = !isMenuOpen.value
+    }
 
     const toggleProSearch = () => {
       emit('toggleProSearch')
@@ -59,6 +77,8 @@ export default defineComponent({
 
     return {
       favoriteCount,
+      isMenuOpen,
+      toggleMenu,
       toggleProSearch,
       sortMovies,
     }
