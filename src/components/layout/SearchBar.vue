@@ -1,6 +1,11 @@
 <template>
   <div class="flex justify-center w-full">
-    <InputField v-model="searchQuery" placeholder="Search for movies..." type="text" />
+    <InputField
+      v-model="searchQuery"
+      placeholder="Search for movies..."
+      type="text"
+      @keydown.enter="handleSearch"
+    />
     <CustomButton @click="handleSearch" class="text-white"> Search </CustomButton>
   </div>
 </template>
