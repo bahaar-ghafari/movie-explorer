@@ -1,0 +1,40 @@
+<template>
+  <div class="favorites-page container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Your Favorite Movies</h1>
+    <!-- TODO:create ui -->
+    <div v-if="favoriteMovies.length === 0" class="text-gray-500">You have no favorite movies.</div>
+    <ul v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <li
+        v-for="movie in favoriteMovies"
+        :key="movie.imdbID"
+        class="border rounded-lg shadow-md overflow-hidden relative bg-white"
+      >
+        <MovieItem :movie="movie" />
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { useFavoritesStore } from '@/stores/favoritesStore'
+import MovieItem from '@/components/layout/MovieItem.vue'
+
+export default defineComponent({
+  name: 'FavoritePage',
+  components: { MovieItem },
+  setup() {
+    const favoritesStore = useFavoritesStore()
+
+    return {
+      favoriteMovies: favoritesStore.favorites,
+    }
+  },
+})
+</script>
+
+<style scoped>
+.container {
+  max-width: 1200px;
+}
+</style>

@@ -9,6 +9,11 @@ const routes = [
     name: 'MovieDetails',
     component: () => import('@/views/MovieDetails.vue'),
   },
+  {
+    path: AppRoutes.FavoritesPage,
+    name: 'FavoritesPage',
+    component: () => import('@/views/FavoritesPage.vue'),
+  },
 ]
 
 const router = createRouter({

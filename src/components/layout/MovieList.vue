@@ -7,26 +7,7 @@
         :key="movie.imdbID"
         class="border rounded-lg shadow-md overflow-hidden relative bg-white"
       >
-        <img
-          :src="movie.Poster !== 'N/A' ? movie.Poster : 'placeholderImage'"
-          :alt="movie.Title"
-          class="w-full h-56 object-cover"
-        />
-        <div class="p-2">
-          <h3 class="font-semibold text-lg text-gray-600 break-words max-w-full">
-            {{ movie.Title }}
-          </h3>
-          <p class="text-sm text-gray-400">{{ movie.Year }}</p>
-          <div class="flex justify-between">
-            <router-link
-              :to="`/movie${movie.imdbID}`"
-              class="block hover:bg-blue-100 transition text-blue-600"
-            >
-              See Details
-            </router-link>
-            <FavoriteButton :movie="movie" />
-          </div>
-        </div>
+        <MovieItem :movie="movie" />
       </li>
     </ul>
   </div>
@@ -36,11 +17,11 @@
 import { defineComponent, type PropType } from 'vue'
 import type { Movie } from '@/types/movies'
 import { useFavoritesStore } from '@/stores/favoritesStore'
-import FavoriteButton from './FavoriteButton.vue'
+import MovieItem from './MovieItem.vue'
 
 export default defineComponent({
   name: 'MovieList',
-  components: { FavoriteButton },
+  components: { MovieItem },
   props: {
     movies: {
       type: Array as PropType<Movie[]>,
