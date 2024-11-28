@@ -10,12 +10,11 @@ export const searchMovies = async (
       s: query,
       page: options?.page,
       type: options?.type,
-      y: options?.filterYear,
+      y: options?.year,
     },
   })
 
   const data = response.data
-
   if (data.Response === 'True') {
     const movies = data.Search || []
     const totalResults = parseInt(data.totalResults, 10) || 0

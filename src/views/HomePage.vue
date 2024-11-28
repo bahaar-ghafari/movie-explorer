@@ -7,6 +7,7 @@
       class="mb-4"
     />
     <SearchBar @search="fetchMovies" class="mb-4" />
+    <ProSearch v-if="showProSearch" @search="searchPro" class="mb-4" />
     <MovieList
       v-if="movies.length && !isLoading"
       :movies="movies"
@@ -22,30 +23,53 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import SearchBar from '@/components/layout/SearchBar.vue'
 import MovieList from '@/components/layout/MovieList.vue'
+import ProSearch from '@/components/layout/ProSearch.vue'
 import { useSearchMovies } from '@/composables/useSearchMovies'
 import { sortMovies } from '@/utils/sortUtils'
+import type { FilterOptions } from '@/types/apis'
+import { useMovieDetails } from '@/composables/useMovieDetails'
 
 export default defineComponent({
   name: 'HomePage',
-  components: { AppHeader, SearchBar, MovieList },
+  components: { AppHeader, SearchBar, MovieList, ProSearch },
   setup() {
+    // Composables
     const { movies, isLoading, errorMessage, fetchMovies } = useSearchMovies()
+    const { movieDetails, fetchMovieDetails } = useMovieDetails()
+
+    // Reactive States
     const showProSearch = ref(false)
     const selectedSort = ref<'title' | 'year'>('title')
 
+    // Methods
     const toggleSelectedSort = () => {
       selectedSort.value = selectedSort.value === 'title' ? 'year' : 'title'
     }
 
-    const sortedMovies = computed(() => sortMovies(movies.value, selectedSort.value))
-
     const toggleProSearch = () => {
       showProSearch.value = !showProSearch.value
     }
+
+    const searchPro = (filters: FilterOptions) => {
+      fetchMovieDetails(filters)
+    }
+
+    // Watchers
+    watch(
+      () => movieDetails.value,
+      (newDetails) => {
+        if (newDetails) {
+          movies.value = [newDetails] // Replace movies with the new movie details
+        }
+      },
+    )
+
+    // Computed Properties
+    const sortedMovies = computed(() => sortMovies(movies.value, selectedSort.value))
 
     return {
       movies: sortedMovies,
@@ -55,6 +79,8 @@ export default defineComponent({
       fetchMovies,
       toggleSelectedSort,
       toggleProSearch,
+      showProSearch,
+      searchPro,
     }
   },
 })

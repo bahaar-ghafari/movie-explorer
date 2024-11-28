@@ -20,10 +20,23 @@ export interface MoviesSearchResponse {
   currentPage: number
   totalPages: number
 }
+export type MediaType = 'movie' | 'series' | 'episode'
 
 export interface SearchOptions {
-  sortBy?: 'title' | 'year'
-  filterYear?: string
-  type?: 'movie' | 'series' | 'episode'
+  year?: string
+  type?: MediaType
   page?: number
 }
+export type FilterOptions =
+  | {
+      imdbID: string
+      title?: never
+      year?: string
+      type?: MediaType
+    }
+  | {
+      imdbID?: never
+      title: string
+      year?: string
+      type?: MediaType
+    }

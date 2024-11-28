@@ -12,7 +12,7 @@ export function useSearchMovies() {
     try {
       errorMessage.value = ''
       isLoading.value = true
-
+      console.log('%csrc/composables/useSearchMovies.ts:15 options', 'color: #007acc;', options)
       const { movies: fetchedMovies } = await searchMovies(query, options)
 
       if (fetchedMovies.length === 0) {
