@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useFavoritesStore } from '@/stores/favoritesStore'
 import CustomButton from '@/components/base/CustomButton.vue'
 import HeartIcon from '@/assets/svg/HeartIcon.vue'
@@ -47,6 +47,7 @@ export default defineComponent({
   },
   setup(_, { emit }) {
     const favoritesStore = useFavoritesStore()
+    const favoriteCount = computed(() => favoritesStore.favorites.length)
 
     const toggleProSearch = () => {
       emit('toggleProSearch')
@@ -57,7 +58,7 @@ export default defineComponent({
     }
 
     return {
-      favoriteCount: favoritesStore.favorites.length,
+      favoriteCount,
       toggleProSearch,
       sortMovies,
     }
