@@ -33,7 +33,7 @@ export default defineComponent({
     const toast = useToast()
 
     const handleSearch = () => {
-      if (searchQuery.value.trim().length > 3) {
+      if (searchQuery.value.trim().length > 2) {
         emit('search', searchQuery.value)
       } else {
         toast.info('Please enter at least 3 characters.')

@@ -1,5 +1,9 @@
 <template>
-  <CustomButton class="bg-transparent h-fit" @click="toggleFavorite(movie)">
+  <CustomButton
+    class="bg-transparent h-fit"
+    @click="handleToggleFavorite"
+    aria-label="Toggle favorite"
+  >
     <HeartIcon :filled="isFavorite(movie.imdbID)" />
   </CustomButton>
 </template>
@@ -20,12 +24,20 @@ export default defineComponent({
     },
   },
   components: { CustomButton, HeartIcon },
-  setup() {
+  setup(props) {
     const favoritesStore = useFavoritesStore()
 
+    const handleToggleFavorite = () => {
+      favoritesStore.toggleFavorite(props.movie)
+    }
+
+    const isFavorite = (imdbID: string) => {
+      return favoritesStore.isFavorite(imdbID)
+    }
+
     return {
-      toggleFavorite: favoritesStore.toggleFavorite,
-      isFavorite: favoritesStore.isFavorite,
+      handleToggleFavorite,
+      isFavorite,
     }
   },
 })
