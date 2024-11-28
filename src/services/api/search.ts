@@ -1,5 +1,5 @@
 import axiosInstance from '../axiosInstance'
-import type { MovieSearchResponse, MoviesSearch, SearchOptions } from '@/types/apis'
+import type { MovieSearchResponse, MoviesSearch, SearchOptions } from '@/types/api'
 
 export const searchMovies = async (
   query: string,

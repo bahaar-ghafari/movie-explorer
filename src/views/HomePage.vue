@@ -21,7 +21,7 @@ import MovieList from '@/components/layout/MovieList.vue'
 import ProSearch from '@/components/layout/ProSearch.vue'
 import { useSearchMovies } from '@/composables/useSearchMovies'
 import { sortMovies } from '@/utils/sortUtils'
-import type { FilterOptions } from '@/types/apis'
+import type { FilterOptions } from '@/types/api'
 import { useMovieDetails } from '@/composables/useMovieDetails'
 import LoadingSpinner from '../components/layout/LoadingSpinner.vue'
 

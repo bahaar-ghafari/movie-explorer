@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import type { MovieDetails } from '@/types/movies'
 import { getMovieDetails } from '@/services/api/details'
-import type { FilterOptions } from '@/types/apis'
+import type { FilterOptions } from '@/types/api'
 import { useToast } from 'vue-toastification'
 
 export function useMovieDetails() {
