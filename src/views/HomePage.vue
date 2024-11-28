@@ -8,14 +8,12 @@
     />
     <SearchBar @search="handleSearch" class="mb-4" />
     <ProSearch v-if="showProSearch" @search="searchPro" class="mb-4" @close="toggleProSearch" />
+    <LoadingSpinner v-if="isLoading" />
     <MovieList
-      v-if="movies.length && !isLoading"
+      v-else-if="movies.length"
       :movies="movies"
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
     />
-    <div v-else-if="isLoading" class="text-blue-500 text-center mt-8 font-semibold">
-      Loading movies...
-    </div>
   </div>
 </template>
 
@@ -29,10 +27,11 @@ import { useSearchMovies } from '@/composables/useSearchMovies'
 import { sortMovies } from '@/utils/sortUtils'
 import type { FilterOptions } from '@/types/apis'
 import { useMovieDetails } from '@/composables/useMovieDetails'
+import LoadingSpinner from './LoadingSpinner.vue'
 
 export default defineComponent({
   name: 'HomePage',
-  components: { AppHeader, SearchBar, MovieList, ProSearch },
+  components: { AppHeader, SearchBar, MovieList, ProSearch, LoadingSpinner },
   setup() {
     const { movies, isLoading, fetchMovies } = useSearchMovies()
     const { movieDetails, fetchMovieDetails } = useMovieDetails()

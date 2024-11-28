@@ -1,7 +1,5 @@
 <template>
-  <div v-if="isLoading" class="text-blue-500 text-center mt-8 font-semibold">
-    Loading movie details...
-  </div>
+  <LoadingSpinner v-if="isLoading" />
   <div v-else-if="movieDetails" class="p-4">
     <div class="flex flex-col md:flex-row gap-4">
       <img
@@ -63,10 +61,11 @@ import { defineComponent, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMovieDetails } from '@/composables/useMovieDetails'
 import FavoriteButton from '@/components/layout/FavoriteButton.vue'
+import LoadingSpinner from './LoadingSpinner.vue'
 
 export default defineComponent({
   name: 'MovieDetails',
-  components: { FavoriteButton },
+  components: { FavoriteButton, LoadingSpinner },
   setup() {
     const route = useRoute()
     const { movieDetails, isLoading, fetchMovieDetails } = useMovieDetails()
