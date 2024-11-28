@@ -1,45 +1,94 @@
-# movie-expelorer
+## Movie Explorer
 
-This template should help get you started developing with Vue 3 in Vite.
+application to search, view, and manage favorite movies using the OMDb API. The app is designed with a focus on responsiveness, accessibility, and reusable components.
 
-## Recommended IDE Setup
+You can access the live version of the application here:
+[Movie Explorer](http://188.245.69.243:5173/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### Table of Contents
 
-## Type Support for `.vue` Imports in TS
+- Installation
+- Technologies
+- Features
+- Best Practices
+- Testing
+- improvement
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### Project Setup
 
-## Customize configuration
+1. Clone the repository:
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+```bash
+git clone https://github.com/bahaar-ghafari/movie-explorer.git
+```
 
-## Project Setup
+2. Navigate to the project directory:
 
-```sh
+```bash
+cd movie-explorer
+```
+
+3. Install dependencies:
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+4. Create a .env file by copying .env.sample and updating the API key:
 
-```sh
+```bash
+VITE_BASE_URL=https://www.omdbapi.com/
+VITE_API_KEY=your_api_key
+```
+
+5. Start the development server:
+
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+6. Open your browser and navigate to http://localhost:5173.
 
-```sh
-npm run build
+### Technologies
+
+- Vue 3: Reactive framework for building scalable front-end applications.
+- TypeScript: Ensures type safety and reduces runtime errors, ideal for handling complex data structures.
+- Pinia: A modern, Vue 3-compatible state management library with excellent TypeScript support.
+- Vue Router: Handles application navigation with dynamic route management.
+- Tailwind CSS: Utility-first framework for building responsive, customizable designs efficiently.
+- Vitest: Fast and Vite-native testing framework, optimized for Vue 3.
+- Vue Toastification: A lightweight, customizable library for user-friendly notifications.
+
+### Features
+
+- Search Movies: Search for movies by query.
+- Advanced Search: Perform filtered searches using additional parameters.
+- Movie Details: View detailed information about selected movies.
+- Favorite Movies: Add or remove movies from your favorites list.
+- Sorting: Sort movies by title or release year.
+- Responsive Design: Optimized for both desktop and mobile views.
+- Accessibility: Components are accessible and keyboard-friendly.
+- Error Handling: Graceful error messages with toast notifications.
+
+### Best Practices
+
+1. Reusable Components: Modular and maintainable UI building blocks.
+2. Composables: Centralized, reusable hooks for cleaner logic separation.
+3. Utility Functions: Shared logic (e.g., sorting, localStorage management) for DRY code.
+4. Route Enum: Centralized route management for maintainability and error reduction.
+5. Interceptors: Handles API headers, retries, and error responses centrally.
+6. Lazy Loading: Improves performance by loading components only when needed.
+
+### Testing
+
+This project uses Vitest for unit testing. Run tests with:
+
+```bash
+npm run test
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Improvements
 
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- Enhance Test Coverage: Write unit tests for all components, composables, and utility functions to ensure reliability and maintainability.
+- Add Pagination: Improve user experience by implementing pagination for search results and favorite movies.
+- Localization and Language Support: Add support for multiple languages and locale-based formatting for a broader audience reach.
