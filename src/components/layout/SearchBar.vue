@@ -1,12 +1,19 @@
 <template>
-  <div class="flex justify-center w-full">
+  <div class="flex justify-center w-full" role="search">
     <InputField
       v-model="searchQuery"
       placeholder="Search for movies..."
       type="text"
       @keydown.enter="handleSearch"
+      aria-labelledby="search-label"
     />
-    <CustomButton @click="handleSearch" class="text-white"> <SearchIcon /> </CustomButton>
+    <CustomButton
+      @click="handleSearch"
+      class="text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500px-4 py-2"
+      aria-label="Search"
+    >
+      <SearchIcon />
+    </CustomButton>
   </div>
 </template>
 

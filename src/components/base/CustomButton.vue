@@ -7,6 +7,7 @@
     ]"
     :disabled="disabled"
     @click="handleClick"
+    :aria-disabled="disabled ? 'true' : undefined"
   >
     <slot name="iconBefore" />
     <slot />

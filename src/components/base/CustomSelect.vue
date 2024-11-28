@@ -4,7 +4,7 @@
       {{ label }}
     </label>
     <select
-      :id="id"
+      :id="id || undefined"
       :value="modelValue"
       @change="onSelect"
       class="mt-1 block w-full text-gray-600 border-gray-300 p-3 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
