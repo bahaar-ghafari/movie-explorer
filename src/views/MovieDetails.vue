@@ -1,10 +1,10 @@
 <template>
-  <!-- add skeleton -->
+  <!-- TODO:add skeleton -->
   <div v-if="isLoading" class="text-blue-500">Loading movie details...</div>
-  <!-- add toast -->
+  <!-- TODO:add toast -->
   <div v-else-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
   <div v-else-if="movieDetails" class="p-4">
-    <div class="flex flex-col md:flex-row gap-4">
+    <div class="flex gap-4">
       <!-- TODO:placeholderImage -->
       <img
         :src="movieDetails.Poster !== 'N/A' ? movieDetails.Poster : 'placeholderImage'"
@@ -12,7 +12,10 @@
         class="w-full md:w-1/3 object-cover"
       />
       <div>
-        <h2 class="text-2xl font-bold">{{ movieDetails.Title }}</h2>
+        <div class="flex justify-between items-center">
+          <h1 class="text-2xl font-bold text-gray-800">{{ movieDetails?.Title }}</h1>
+          <FavoriteButton :movie="movieDetails" />
+        </div>
         <p class="text-gray-600">{{ movieDetails.Year }}</p>
         <p><strong>Genre:</strong> {{ movieDetails.Genre }}</p>
         <p><strong>Director:</strong> {{ movieDetails.Director }}</p>
@@ -27,9 +30,11 @@
 import { defineComponent, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMovieDetails } from '@/composables/useMovieDetails'
+import FavoriteButton from '@/components/layout/FavoriteButton.vue'
 
 export default defineComponent({
   name: 'MovieDetails',
+  components: { FavoriteButton },
   setup() {
     const route = useRoute()
 
