@@ -16,7 +16,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'InputField',
+  name: 'CustomInput',
   props: {
     modelValue: {
       type: String,

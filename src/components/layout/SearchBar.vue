@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import InputField from '@/components/base/InputField.vue'
+import InputField from '@/components/base/CustomInput.vue'
 import CustomButton from '@/components/base/CustomButton.vue'
 
 export default defineComponent({
