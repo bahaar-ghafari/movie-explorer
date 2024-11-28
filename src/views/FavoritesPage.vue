@@ -1,7 +1,6 @@
 <template>
   <div class="favorites-page container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">Your Favorite Movies</h1>
-    <!-- TODO:create ui -->
     <div v-if="favoriteMovies.length === 0" class="text-gray-500">You have no favorite movies.</div>
     <ul v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <li
@@ -16,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useFavoritesStore } from '@/stores/favoritesStore'
 import MovieItem from '@/components/layout/MovieItem.vue'
 
@@ -25,9 +24,10 @@ export default defineComponent({
   components: { MovieItem },
   setup() {
     const favoritesStore = useFavoritesStore()
+    const favoriteMovies = computed(() => favoritesStore.favorites)
 
     return {
-      favoriteMovies: favoritesStore.favorites,
+      favoriteMovies,
     }
   },
 })
