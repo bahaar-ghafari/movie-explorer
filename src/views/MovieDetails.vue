@@ -5,7 +5,7 @@
       <ImageComponent
         :src="movieDetails.Poster"
         :alt="movieDetails.Title"
-        class="w-full md:w-1/3 object-cover rounded shadow"
+        class="w-full md:w-1/3 object-cover rounded shadow h-auto"
       />
       <div class="flex-1">
         <div class="flex justify-between items-center mb-4">
