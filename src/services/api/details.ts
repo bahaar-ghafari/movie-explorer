@@ -1,4 +1,4 @@
-import type { FilterOptions } from '@/types/apis'
+import type { FilterOptions } from '@/types/api'
 import axiosInstance from '../axiosInstance'
 
 export const getMovieDetails = async (options?: FilterOptions) => {

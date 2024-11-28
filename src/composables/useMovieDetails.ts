@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import type { MovieDetails } from '@/types/movies'
 import { getMovieDetails } from '@/services/api/details'
-import type { FilterOptions } from '@/types/apis'
+import type { FilterOptions } from '@/types/api'
 import { useToast } from 'vue-toastification'
 
 export function useMovieDetails() {
@@ -15,7 +15,8 @@ export function useMovieDetails() {
     try {
       movieDetails.value = await getMovieDetails(options)
     } catch (error) {
-      toast.error('Failed to load movie details. Please try again.')
+      const message = error instanceof Error ? error.message : 'Failed to load movie details'
+      toast.error(message)
     } finally {
       isLoading.value = false
     }

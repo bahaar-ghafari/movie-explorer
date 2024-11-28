@@ -2,10 +2,10 @@
   <LoadingSpinner v-if="isLoading" />
   <div v-else-if="movieDetails" class="p-4">
     <div class="flex flex-col md:flex-row gap-4">
-      <img
-        :src="movieDetails.Poster !== 'N/A' ? movieDetails.Poster : 'placeholderImage'"
+      <ImageComponent
+        :src="movieDetails.Poster"
         :alt="movieDetails.Title"
-        class="w-full md:w-1/3 object-cover rounded shadow"
+        class="w-full md:w-1/3 object-cover rounded shadow h-auto"
       />
       <div class="flex-1">
         <div class="flex justify-between items-center mb-4">
@@ -62,10 +62,11 @@ import { useRoute } from 'vue-router'
 import { useMovieDetails } from '@/composables/useMovieDetails'
 import FavoriteButton from '@/components/layout/FavoriteButton.vue'
 import LoadingSpinner from '../components/layout/LoadingSpinner.vue'
+import ImageComponent from '@/components/layout/ImageComponent.vue'
 
 export default defineComponent({
   name: 'MovieDetails',
-  components: { FavoriteButton, LoadingSpinner },
+  components: { FavoriteButton, LoadingSpinner, ImageComponent },
   setup() {
     const route = useRoute()
     const { movieDetails, isLoading, fetchMovieDetails } = useMovieDetails()
@@ -79,9 +80,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped>
-img {
-  max-height: 300px;
-}
-</style>
