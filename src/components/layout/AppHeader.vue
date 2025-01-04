@@ -8,9 +8,9 @@
       @click="toggleMenu"
       aria-expanded="isMenuOpen.toString()"
       aria-controls="main-navigation"
-      class="block md:hidden bg-white text-blue-900 hover:bg-sky-200 px-4 rounded-md"
+      class="block md:hidden bg-transparent text-blue-900 hover:bg-sky-200 px-2 rounded-md"
     >
-      <MenuIcon />
+      <MenuIcon color="white" />
     </CustomButton>
     <nav
       :id="'main-navigation'"

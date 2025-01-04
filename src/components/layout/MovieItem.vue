@@ -9,10 +9,10 @@
         <FavoriteButton :movie="movie" />
       </div>
 
-      <p class="text-sm text-gray-400">{{ movie.Year }}</p>
+      <p class="text-sm text-gray-600">{{ movie.Year }}</p>
       <router-link
         :to="`/movie/${movie.imdbID}`"
-        class="block hover:bg-blue-100 transition text-blue-600"
+        class="block hover:bg-blue-100 transition text-blue-900"
       >
         See Details
       </router-link>

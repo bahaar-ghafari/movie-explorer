@@ -9,10 +9,10 @@
       />
       <div class="flex-1">
         <div class="flex justify-between items-center mb-4">
-          <h1 class="text-2xl font-bold text-gray-800">{{ movieDetails?.Title }}</h1>
+          <h1 class="text-2xl font-bold text-gray-100">{{ movieDetails?.Title }}</h1>
           <FavoriteButton :movie="movieDetails" />
         </div>
-        <p class="text-sm text-gray-500 mb-2">{{ movieDetails.Year }}</p>
+        <p class="text-sm text-gray-300 mb-2">{{ movieDetails.Year }}</p>
         <p class="mb-4"><strong>Genre:</strong> {{ movieDetails.Genre }}</p>
         <p class="mb-4"><strong>Director:</strong> {{ movieDetails.Director }}</p>
         <p class="mb-4"><strong>Writer:</strong> {{ movieDetails.Writer }}</p>
@@ -27,13 +27,13 @@
             <li
               v-for="rating in movieDetails.Ratings"
               :key="rating.Source"
-              class="text-sm text-gray-600"
+              class="text-sm text-gray-400"
             >
               <strong>{{ rating.Source }}:</strong> {{ rating.Value }}
             </li>
           </ul>
         </div>
-        <div class="mt-4 text-sm text-gray-600 space-y-2">
+        <div class="mt-4 text-sm text-gray-400 space-y-2">
           <p v-if="movieDetails.Metascore !== 'N/A'">
             <strong>Metascore:</strong> {{ movieDetails.Metascore }}
           </p>

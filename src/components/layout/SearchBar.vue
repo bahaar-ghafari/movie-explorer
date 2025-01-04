@@ -9,10 +9,11 @@
     />
     <CustomButton
       @click="handleSearch"
-      class="text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500px-4 py-2"
+      class="text-white bg-white border-none py-2"
       aria-label="Search"
+      :disabled="searchQuery == ''"
     >
-      <SearchIcon />
+      <SearchIcon color="gray-800" />
     </CustomButton>
   </div>
 </template>
